@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyy7c44srbcf1"]
+
+[ext_resource type="Script" uid="uid://cg4b61w8h6t4r" path="res://Scenes/blue_bubble.gd" id="1_a82cg"]
+[ext_resource type="Texture2D" uid="uid://53aj7eafgdc5" path="res://Assets/Sprites/Bubbles/Spritesheet.png" id="1_der51"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vefhv"]
+atlas = ExtResource("1_der51")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss1b5"]
+atlas = ExtResource("1_der51")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7j6w"]
+atlas = ExtResource("1_der51")
+region = Rect2(40, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i40o7"]
+atlas = ExtResource("1_der51")
+region = Rect2(40, 80, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qauqf"]
+atlas = ExtResource("1_der51")
+region = Rect2(40, 120, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v0ujc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vefhv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss1b5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7j6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i40o7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qauqf")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cypbp"]
+radius = 7.0
+
+[node name="Blue Bubble" type="Area2D"]
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("1_a82cg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v0ujc")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_cypbp")
+
+[connection signal="area_entered" from="." to="." method="_on_Area2D_area_entered"]

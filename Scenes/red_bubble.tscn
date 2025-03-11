@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvllsdhfla4po"]
+
+[ext_resource type="Script" uid="uid://b2l8rbicxj5g1" path="res://Scenes/red_bubble.gd" id="1_7vwbb"]
+[ext_resource type="Texture2D" uid="uid://53aj7eafgdc5" path="res://Assets/Sprites/Bubbles/Spritesheet.png" id="1_q5bxf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlyo6"]
+atlas = ExtResource("1_q5bxf")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh8o0"]
+atlas = ExtResource("1_q5bxf")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xak70"]
+atlas = ExtResource("1_q5bxf")
+region = Rect2(0, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xikme"]
+atlas = ExtResource("1_q5bxf")
+region = Rect2(0, 80, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_halc6"]
+atlas = ExtResource("1_q5bxf")
+region = Rect2(0, 120, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lgqlp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlyo6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh8o0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xak70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xikme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_halc6")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hygw4"]
+radius = 7.0
+
+[node name="Blue Bubble" type="Area2D"]
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("1_7vwbb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lgqlp")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_hygw4")
+
+[connection signal="area_entered" from="." to="." method="_on_Area2D_area_entered"]

@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://clw4r3agyfsmv"]
+
+[ext_resource type="Script" uid="uid://de57ysic7e268" path="res://Scenes/green_bubble.gd" id="1_c6nbi"]
+[ext_resource type="Texture2D" uid="uid://53aj7eafgdc5" path="res://Assets/Sprites/Bubbles/Spritesheet.png" id="1_gwwpx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl1wo"]
+atlas = ExtResource("1_gwwpx")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j23ji"]
+atlas = ExtResource("1_gwwpx")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_med6i"]
+atlas = ExtResource("1_gwwpx")
+region = Rect2(80, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hf7a6"]
+atlas = ExtResource("1_gwwpx")
+region = Rect2(80, 80, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfm2c"]
+atlas = ExtResource("1_gwwpx")
+region = Rect2(80, 120, 40, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lgqlp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jl1wo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j23ji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_med6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hf7a6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfm2c")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hygw4"]
+radius = 7.0
+
+[node name="Green Bubble" type="Area2D"]
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("1_c6nbi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lgqlp")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_hygw4")
+
+[connection signal="area_entered" from="." to="." method="_on_Area2D_area_entered"]

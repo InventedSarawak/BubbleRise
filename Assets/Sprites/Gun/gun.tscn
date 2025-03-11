@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0kohnpm6ewq6"]
+
+[ext_resource type="Script" uid="uid://crtlfoken37ly" path="res://Assets/Sprites/Gun/gun.gd" id="1_pi6t3"]
+[ext_resource type="Texture2D" uid="uid://cv2186un74xf0" path="res://Assets/Sprites/Gun/Bow.png" id="1_uar1r"]
+
+[node name="gun" type="Node2D"]
+position = Vector2(-1, -21)
+script = ExtResource("1_pi6t3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.99999, 0)
+rotation = 2.35619
+scale = Vector2(0.726259, 0.72218)
+texture = ExtResource("1_uar1r")
